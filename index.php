@@ -6,11 +6,12 @@ $sql = "CREATE TABLE `test01` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `test02` (
   `id` int(11) NOT NULL,
+  `id2` int(11) NOT NULL,
   `name` varchar(200) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `test03` (
   `id` int(11) NOT NULL,
-  `name` varchar(200) CHARACTER SET utf8 NOT NULL
+  `naame` varchar(200) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
 $sql2 = $sql;
 
@@ -23,14 +24,72 @@ while(preg_match('#CREATE TABLE `(.*?)`#',$sql,$matches)) {
 $sql2 = explode(';',$sql2);
 
 foreach($nomTables as $key => $value) {
-	$scriptValues = [];
-	if(preg_match('#CREATE TABLE `(.*?)`#',$sql2[$key],$matches)) {
-		$sql2[$key] = str_replace('`'.$matches[1].'`','',$sql2[$key]);
-	}
-	while(preg_match('#`(.*?)`#',$sql2[$key],$matches)) {
-		$scriptValues[] = $matches[1];
-		$sql2[$key] = str_replace('`'.$matches[1].'`','',$sql2[$key]);
-	}
+
+    $scriptValues = [];
+    if (preg_match('#CREATE TABLE `(.*?)`#', $sql2[$key], $matches)) {
+        $sql2[$key] = str_replace('`' . $matches[1] . '`', '', $sql2[$key]);
+    }
+    while (preg_match('#`(.*?)`#', $sql2[$key], $matches)) {
+        $scriptValues[] = $matches[1];
+        $sql2[$key] = str_replace('`' . $matches[1] . '`', '', $sql2[$key]);
+    }
+
+
+    $build = "";
+    $attributs = "";
+    $setteurs = "";
+    $getteurs = "";
+
+    foreach($scriptValues as $sqlField) {
+        $build .= "\$build->set".$sqlField."(\$row->".$sqlField.");";
+        $build .= "\n\t\t\t";
+
+        $attributs .= "private $".$sqlField.";";
+        $attributs .= "\n\t\t";
+
+        $setteurs .= "public function set".ucfirst($sqlField)."($".$sqlField.") {
+            \$this->".$sqlField."= $".$sqlField.";
+        }";
+        $setteurs .= "\n\t\t";
+
+        $getteurs .= "public function get".ucfirst($sqlField)."() {
+            return \$this->".$sqlField.";
+        }";
+        $getteurs .= "\n\t\t";
+    }
+    $file = fopen(ucfirst($value)."DAO.php","w");
+    $txt = "<?php
+    class ".ucfirst($value)."DAO extends DAO {
+    
+        protected \$table = '".$value."';
+        
+        public function build(\$row) {
+            \$build = new ".ucfirst($value)."(\$row->$scriptValues[0]);
+            $build
+        }
+    }";
+    fwrite($file, $txt);
+    fclose($file);
+
+    $file = fopen(ucfirst($value).".php","w");
+    $txt = "<?php
+    class ".ucfirst($value)." {
+    
+        $attributs
+        
+        $setteurs
+        
+        $getteurs
+    }";
+    fwrite($file, $txt);
+    fclose($file);
+
+
+}
+/*
+foreach($nomTables as $key => $valueTable){
+
+
 
 	$build = "";
 
@@ -47,20 +106,20 @@ foreach($nomTables as $key => $value) {
 	$txt = "<?php
 	class ".$value."DAO extends DAO {
 		protected \$table = '".$value."';
-		
+
 		//build method
 		public function build(\$row) {
 			$build;
 		}
 	}
-	
+
 	?>";
 	fwrite($file, $txt);
 	fclose($file);
-}
 
-/*
-foreach($nomTables as $key => $valueTable){
+
+
+
 
 	while(preg_match('#`(.*?)`#',$sql2,$matches)) {
 		$scriptValues[] = $matches[1];
