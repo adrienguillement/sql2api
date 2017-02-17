@@ -1,104 +1,72 @@
 <?php
-$scriptValues = [];
-$sql = "CREATE TABLE `components` (
+
+$sql = "CREATE TABLE `test01` (
   `id` int(11) NOT NULL,
   `name` varchar(200) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `compents` (
+CREATE TABLE `test02` (
   `id` int(11) NOT NULL,
   `name` varchar(200) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `coents` (
+CREATE TABLE `test03` (
   `id` int(11) NOT NULL,
   `name` varchar(200) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+$sql2 = $sql;
+
 
 $nomTables = [];
 while(preg_match('#CREATE TABLE `(.*?)`#',$sql,$matches)) {
 	$nomTables[] = $matches[1];
 	$sql = str_replace('CREATE TABLE `'.$matches[1].'`','',$sql);
 }
+$sql2 = explode(';',$sql2);
 
-
-foreach($nomTables as $key => $valueTable){
-
-	while(preg_match('#`(.*?)`#',$sql,$matches)) {
+foreach($nomTables as $key => $value) {
+	$scriptValues = [];
+	if(preg_match('#CREATE TABLE `(.*?)`#',$sql2[$key],$matches)) {
+		$sql2[$key] = str_replace('`'.$matches[1].'`','',$sql2[$key]);
+	}
+	while(preg_match('#`(.*?)`#',$sql2[$key],$matches)) {
 		$scriptValues[] = $matches[1];
-		$sql = str_replace('`'.$matches[1].'`','',$sql);
-		$count++;
+		$sql2[$key] = str_replace('`'.$matches[1].'`','',$sql2[$key]);
 	}
-	$file = fopen("DAO.php","w");
-	$txt = "<?php";
-	fwrite($file, $txt);
-	$txt = "
-	abstract class DAO
-	{
-		private static \$instance=[];
-		
-		private function _construct() {
+
+	$build = "";
+
+	foreach($scriptValues as $key => $values) {
+		if($key != $scriptValues[0]){
+			$build .= "\$build->set".$values."(\$row->".$values.");";
 		}
-		
-		/**
-		* get an instance of Object --> create just one instance for each object (singleton)
-		*/
-	    public static function getInstance(){
-	        \$class = get_called_class();
-	        if(!isset(self::\$instance[\$class])){
-	            self::\$instance[\$class] = new \$class();
-	        }
-	        return self::\$instance[\$class];
-	    }
-	    
-	     /**
-	    * get all the data of the current table
-	    * @return array
-	    */
-	    public function findAll(){
-	        \$file = file_get_contents('http://127.0.0.1/gsb/'.\$this->table.'/all');
-	        \$result = json_decode(\$file);
-	        
-	        \$values = array();
-	        foreach (\$result as \$row) {
-	            \$values[\$row->id] = \$this->build($row);
-	        }
-	        return \$values;
-	    }
-	    
-	    /**
-	    * get data of one registration of current table
-	    * @param int \$id
-	    * @return array
-	    */
-	    public function findOneById(\$id){
-	        \$file = file_get_contents('http://127.0.0.1/gsb/'.\$this->table.'/'.\$id);
-	        \$result = json_decode(\$file);
-	        
-	        \$value = \$this->build(\$result[0]);
-	        return \$value;
-	    }
-	    
-	    /**
-	    * remove one registration of current table
-	    * @param int \$id
-	    * @return boolean
-	    */
-	    public function deleteById(\$id){
-	        \$file = file_get_contents('http://127.0.0.1/gsb/'.\$this->table.'/delete/'.\$id);
-	        \$result = json_decode(\$file);
-	        
-	        if(\$result->message == 'Success'){
-	            return true;
-	        }else{
-	            return false;
-	        }
-	    }
-	
-	    //All class DAO must have this method build
-	    abstract function build(\$row);
+		else {
+			$build .= "\$build = new ".$scriptValues[0]."(\$row->".$scriptValues[1].");";
+		}
+		$build .= "\n\t\t";
 	}
+	$file = fopen(ucfirst($value)."DAO.php","w");
+	$txt = "<?php
+	class ".$value."DAO extends DAO {
+		protected \$table = '".$value."';
+		
+		//build method
+		public function build(\$row) {
+			$build;
+		}
+	}
+	
 	?>";
 	fwrite($file, $txt);
 	fclose($file);
+}
+
+/*
+foreach($nomTables as $key => $valueTable){
+
+	while(preg_match('#`(.*?)`#',$sql2,$matches)) {
+		$scriptValues[] = $matches[1];
+		$sql2 = str_replace('`'.$matches[1].'`','',$sql2);
+		$count++;
+	}
 
 	$build = "";
 	foreach($scriptValues as $key => $values) {
@@ -239,3 +207,80 @@ foreach($nomTables as $key => $valueTable){
 	fwrite($file, $txt);
 	fclose($file);
 }
+
+/**
+ * generate DAO class
+
+$file = fopen("DAO.php","w");
+$txt = "<?php";
+fwrite($file, $txt);
+$txt = "
+	abstract class DAO
+	{
+		private static \$instance=[];
+		
+		private function _construct() {
+		}
+		
+		/**
+		* get an instance of Object --> create just one instance for each object (singleton)
+
+	    public static function getInstance(){
+	        \$class = get_called_class();
+	        if(!isset(self::\$instance[\$class])){
+	            self::\$instance[\$class] = new \$class();
+	        }
+	        return self::\$instance[\$class];
+	    }
+	    
+	     /**
+	    * get all the data of the current table
+	    * @return array
+
+	    public function findAll(){
+	        \$file = file_get_contents('http://127.0.0.1/gsb/'.\$this->table.'/all');
+	        \$result = json_decode(\$file);
+	        
+	        \$values = array();
+	        foreach (\$result as \$row) {
+	            \$values[\$row->id] = \$this->build($row);
+	        }
+	        return \$values;
+	    }
+	    
+	    /**
+	    * get data of one registration of current table
+	    * @param int \$id
+	    * @return array
+
+	    public function findOneById(\$id){
+	        \$file = file_get_contents('http://127.0.0.1/gsb/'.\$this->table.'/'.\$id);
+	        \$result = json_decode(\$file);
+	        
+	        \$value = \$this->build(\$result[0]);
+	        return \$value;
+	    }
+	    
+	    /**
+	    * remove one registration of current table
+	    * @param int \$id
+	    * @return boolean
+
+	    public function deleteById(\$id){
+	        \$file = file_get_contents('http://127.0.0.1/gsb/'.\$this->table.'/delete/'.\$id);
+	        \$result = json_decode(\$file);
+	        
+	        if(\$result->message == 'Success'){
+	            return true;
+	        }else{
+	            return false;
+	        }
+	    }
+	
+	    //All class DAO must have this method build
+	    abstract function build(\$row);
+	}
+	?>";
+fwrite($file, $txt);
+fclose($file);
+*/
