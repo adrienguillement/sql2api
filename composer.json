@@ -1,7 +1,9 @@
 {
   "name": "sql2api/sql2api",
+  "keywords": ["sql","api"],
   "description": "SQL2API is a very simple script that turn your sql script table into an very simple api.",
   "homepage": "https://github.com/adrienguillement/sql2api",
+  "license": "MIT",
   "authors": [
     {
       "name": "Adrien GUILLEMENT",
