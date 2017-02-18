@@ -1,4 +1,14 @@
 {
+  "name": "sql2api/sql2api",
+  "description": "SQL2API is a very simple script that turn your sql script table into an very simple api.",
+  "homepage": "https://github.com/adrienguillement/sql2api",
+  "authors": [
+    {
+      "name": "Adrien GUILLEMENT",
+      "email": "contact@adrienguillement.fr",
+      "homepage": "https://github.com/adrienguillement",
+      "role": "Developer"
+    }],
   "require": {
     "slim/slim": "^3.0",
     "gabordemooij/redbean": "dev-master"
