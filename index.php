@@ -22,16 +22,16 @@ while(preg_match('#CREATE TABLE `(.*?)`#',$sql,$matches)) {
 	$sql = str_replace('CREATE TABLE `'.$matches[1].'`','',$sql);
 }
 $sql2 = explode(';',$sql2);
-
+$sq2 = $sql3;
 foreach($nomTables as $key => $value) {
 
     $scriptValues = [];
-    if (preg_match('#CREATE TABLE `(.*?)`#', $sql2[$key], $matches)) {
-        $sql2[$key] = str_replace('`' . $matches[1] . '`', '', $sql2[$key]);
+    if (preg_match('#CREATE TABLE `(.*?)`#', $sql3[$key], $matches)) {
+        $sql3[$key] = str_replace('`' . $matches[1] . '`', '', $sql3[$key]);
     }
-    while (preg_match('#`(.*?)`#', $sql2[$key], $matches)) {
+    while (preg_match('#`(.*?)`#', $sql3[$key], $matches)) {
         $scriptValues[] = $matches[1];
-        $sql2[$key] = str_replace('`' . $matches[1] . '`', '', $sql2[$key]);
+        $sql3[$key] = str_replace('`' . $matches[1] . '`', '', $sql3[$key]);
     }
 
 
@@ -83,9 +83,136 @@ foreach($nomTables as $key => $value) {
     }";
     fwrite($file, $txt);
     fclose($file);
-
-
 }
+
+$file = fopen("api.php","w");
+$txt = "<?php
+use RedBeanPHP\\R;
+require_once 'vendor/autoload.php';
+R::setup('mysql:host=DATABSE_HOST_NAME; dbname=DATABASE_NAME', 'USERNAME', 'PASSWORD');
+\$app = new \\Slim\\Slim();
+";
+
+
+foreach($nomTables as $key => $value) {
+
+    $scriptValues = [];
+    if (preg_match('#CREATE TABLE `(.*?)`#', $sql2[$key], $matches)) {
+        $sql2[$key] = str_replace('`' . $matches[1] . '`', '', $sql2[$key]);
+    }
+    while (preg_match('#`(.*?)`#', $sql2[$key], $matches)) {
+        $scriptValues[] = $matches[1];
+        $sql2[$key] = str_replace('`' . $matches[1] . '`', '', $sql2[$key]);
+    }
+
+    $updateRoute = "";
+    $updateFunction = "";
+    $update = "";
+
+    $addRoute = "";
+    $addFunction = "";
+    $add = "";
+    $addParameters = "";
+    $addLine = "";
+
+    $counter = 1;
+    foreach($scriptValues as $sqlField) {
+        $updateRoute .= "/:".$sqlField;
+        $update .= "\$report->".$sqlField." = $".$sqlField.";\n\t\t";
+        if($updateFunction == "") {
+            $updateFunction .= "$".$sqlField;
+        }
+        else {
+            $updateFunction .= ", $".$sqlField;
+            $addRoute .= "/:".$sqlField;
+        }
+
+        if($counter == 1){
+
+        }
+        elseif ($counter==count($scriptValues)) {
+            $add .= $sqlField." = :".$sqlField;
+            $addFunction .= "$".$sqlField;
+            $addParameters .= "'".$sqlField."' => $".$sqlField;
+            $addLine .= "\$line->".$sqlField." = $".$sqlField.";";
+        }
+        else {
+            $add .= $sqlField." = :".$sqlField." AND ";
+            $addFunction .= "$".$sqlField.",";
+            $addParameters .= "'".$sqlField."' => $".$sqlField.",";
+            $addLine .= "\$line->".$sqlField." = $".$sqlField.";\n\t\t\t";
+        }
+
+        $counter++;
+    }
+
+    $txt .= "
+\$app->group('/".$value."', function() use (\$app) {
+
+    //GET ALL
+    \$app->get('/all', function() {
+        \$reports = R::getAll('SELECT * FROM ".$value."');
+        echo json_encode(\$reports, JSON_UNESCAPED_UNICODE);
+    });
+    
+    //GET ONE
+    \$app->get('/:".$scriptValues[0]."', function(\$id) {
+        \$report = R::getAll('SELECT * FROM expensereport WHERE $scriptValues[0] = ' . \$id);
+        echo json_encode(\$report, JSON_UNESCAPED_UNICODE);
+    });
+    
+    //GET 10
+    \$app->get('/ten', function() {
+        \$reports = R::getAll('SELECT * FROM ".$value." LIMIT 10');
+        echo json_encode(\$reports, JSON_UNESCAPED_UNICODE);
+    });
+    
+    //UPDATE
+    \$app->get('/update".$updateRoute."', function(".$updateFunction.") {
+        \$report = R::load('".$value."', $".$scriptValues[0].");
+        $update
+        R::store(\$report);
+        echo json_encode(\$report, JSON_UNESCAPED_UNICODE);
+    });
+    
+    //INSERT
+    \$app->get('/add".$addRoute."', function($addFunction) {
+       \$query = R::getAll('SELECT * FROM ".$scriptValues." 
+                            WHERE ".$add."',
+		                    [".$addParameters."]
+       );
+       if (empty(\$query)) {
+           \$line = R::dispense('".$value."');
+            ".$addLine."
+           R::store(\$line);
+           echo json_encode(\$line, JSON_UNESCAPED_UNICODE);
+       } else {
+           echo NULL;
+       }
+    });
+    
+    //DELETE
+    \$app->get('/delete/".$scriptValues[0]."', function($".$scriptValues[0].") {
+        \$query = R::getAll('SELECT * FROM ".$value." WHERE ".$scriptValues[0]." = ' . $".$scriptValues[0].");
+        if (\$query) {
+            R::getAll('DELETE FROM ".$value." WHERE ".$scriptValues[0]." = ' . $".$scriptValues[0].");
+            echo json_encode(['message' => 'Success']);
+        } else {
+            echo json_encode(['message' => 'Error, this line doesn\'t exist']);
+        }
+    });
+});\n\n";
+}
+
+
+$txt .= "\$app->run();
+?>";
+
+
+
+
+fwrite($file, $txt);
+fclose($file);
 /*
 foreach($nomTables as $key => $valueTable){
 

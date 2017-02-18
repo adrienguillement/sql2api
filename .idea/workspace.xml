@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cbfe84d-c230-4370-8791-27d76fd8ca87" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test01DAO.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test02DAO.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test03DAO.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/test.iml" afterPath="$PROJECT_DIR$/.idea/test.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/composer.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
     </list>
@@ -31,18 +26,22 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="81" column="17" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
+            <state relative-caret-position="2763">
+              <caret line="197" column="80" selection-start-line="197" selection-start-column="80" selection-end-line="197" selection-end-column="80" />
               <folding>
-                <marker date="1487355497576" expanded="true" signature="15:152" ph="CREATE TABLE... test01" />
-                <marker date="1487355497576" expanded="true" signature="154:317" ph="CREATE TABLE... test02" />
-                <marker date="1487355497576" expanded="true" signature="319:457" ph="CREATE TABLE... test03" />
-                <marker date="1487355497576" expanded="true" signature="604:634" ph="CREATE TABLE... ${$matches[1]}" />
-                <marker date="1487355497576" expanded="true" signature="5176:5210" ph="SELECT * FRO... .$scriptValues[0]." />
-                <marker date="1487355497576" expanded="true" signature="5348:5412" ph="SELECT * FRO... .$scriptValues[0]." />
-                <marker date="1487355497576" expanded="true" signature="5859:5930" ph="SELECT * FRO... expensereport" />
-                <marker date="1487355497576" expanded="true" signature="6308:6354" ph="SELECT * FRO... .$scriptValues[0]." />
-                <marker date="1487355497576" expanded="true" signature="6413:6457" ph="DELETE FROM " />
+                <marker date="1487426451123" expanded="true" signature="15:152" ph="CREATE TABLE... test01" />
+                <marker date="1487426451123" expanded="true" signature="154:317" ph="CREATE TABLE... test02" />
+                <marker date="1487426451123" expanded="true" signature="319:457" ph="CREATE TABLE... test03" />
+                <marker date="1487426451123" expanded="true" signature="604:634" ph="CREATE TABLE... ${$matches[1]}" />
+                <marker date="1487426451123" expanded="true" signature="4267:4291" ph="SELECT * FRO... .$value." />
+                <marker date="1487426451123" expanded="true" signature="4471:4524" ph="SELECT * FRO... expensereport" />
+                <marker date="1487426451123" expanded="true" signature="4688:4721" ph="SELECT * FRO... .$value." />
+                <marker date="1487426451123" expanded="true" signature="5170:5237" ph="SELECT * FRO... expensereport" />
+                <marker date="1487426451123" expanded="true" signature="8996:9030" ph="SELECT * FRO... .$scriptValues[0]." />
+                <marker date="1487426451123" expanded="true" signature="9168:9232" ph="SELECT * FRO... .$scriptValues[0]." />
+                <marker date="1487426451123" expanded="true" signature="9679:9750" ph="SELECT * FRO... expensereport" />
+                <marker date="1487426451123" expanded="true" signature="10128:10174" ph="SELECT * FRO... .$scriptValues[0]." />
+                <marker date="1487426451123" expanded="true" signature="10233:10277" ph="DELETE FROM " />
               </folding>
             </state>
           </provider>
@@ -67,8 +66,8 @@
         <option value="$PROJECT_DIR$/oui.php" />
         <option value="$PROJECT_DIR$/DAO.php" />
         <option value="$PROJECT_DIR$/components.php" />
-        <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/generateApi.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/api.php" />
         <option value="$PROJECT_DIR$/index.php" />
       </list>
@@ -113,6 +112,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -133,7 +133,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -203,21 +202,23 @@
       <option name="presentableId" value="Default" />
       <updated>1487325658946</updated>
       <workItem from="1487325660588" duration="17108000" />
-      <workItem from="1487352145685" duration="3390000" />
+      <workItem from="1487352145685" duration="4052000" />
+      <workItem from="1487421330863" duration="5145000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20498000" />
+    <option name="totallyTimeSpent" value="26305000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1452" height="876" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1637931" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16594827" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3270525" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -228,7 +229,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -254,18 +254,60 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2261">
+          <caret line="133" column="1" selection-start-line="133" selection-start-column="1" selection-end-line="133" selection-end-column="1" />
+          <folding>
+            <marker date="1487426451123" expanded="true" signature="15:152" ph="CREATE TABLE... test01" />
+            <marker date="1487426451123" expanded="true" signature="154:317" ph="CREATE TABLE... test02" />
+            <marker date="1487426451123" expanded="true" signature="319:457" ph="CREATE TABLE... test03" />
+            <marker date="1487426451123" expanded="true" signature="604:634" ph="CREATE TABLE... ${$matches[1]}" />
+            <marker date="1487426451123" expanded="true" signature="4267:4291" ph="SELECT * FRO... .$value." />
+            <marker date="1487426451123" expanded="true" signature="4471:4524" ph="SELECT * FRO... expensereport" />
+            <marker date="1487426451123" expanded="true" signature="4688:4721" ph="SELECT * FRO... .$value." />
+            <marker date="1487426451123" expanded="true" signature="5170:5237" ph="SELECT * FRO... expensereport" />
+            <marker date="1487426451123" expanded="true" signature="8996:9030" ph="SELECT * FRO... .$scriptValues[0]." />
+            <marker date="1487426451123" expanded="true" signature="9168:9232" ph="SELECT * FRO... .$scriptValues[0]." />
+            <marker date="1487426451123" expanded="true" signature="9679:9750" ph="SELECT * FRO... expensereport" />
+            <marker date="1487426451123" expanded="true" signature="10128:10174" ph="SELECT * FRO... .$scriptValues[0]." />
+            <marker date="1487426451123" expanded="true" signature="10233:10277" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1487355497576" expanded="true" signature="15:152" ph="CREATE TABLE... test01" />
-            <marker date="1487355497576" expanded="true" signature="154:317" ph="CREATE TABLE... test02" />
-            <marker date="1487355497576" expanded="true" signature="319:457" ph="CREATE TABLE... test03" />
-            <marker date="1487355497576" expanded="true" signature="604:634" ph="CREATE TABLE... ${$matches[1]}" />
-            <marker date="1487355497576" expanded="true" signature="5176:5210" ph="SELECT * FRO... .$scriptValues[0]." />
-            <marker date="1487355497576" expanded="true" signature="5348:5412" ph="SELECT * FRO... .$scriptValues[0]." />
-            <marker date="1487355497576" expanded="true" signature="5859:5930" ph="SELECT * FRO... expensereport" />
-            <marker date="1487355497576" expanded="true" signature="6308:6354" ph="SELECT * FRO... .$scriptValues[0]." />
-            <marker date="1487355497576" expanded="true" signature="6413:6457" ph="DELETE FROM " />
+            <marker date="1487426451123" expanded="true" signature="15:152" ph="CREATE TABLE... test01" />
+            <marker date="1487426451123" expanded="true" signature="154:317" ph="CREATE TABLE... test02" />
+            <marker date="1487426451123" expanded="true" signature="319:457" ph="CREATE TABLE... test03" />
+            <marker date="1487426451123" expanded="true" signature="604:634" ph="CREATE TABLE... ${$matches[1]}" />
+            <marker date="1487426451123" expanded="true" signature="4267:4291" ph="SELECT * FRO... .$value." />
+            <marker date="1487426451123" expanded="true" signature="4471:4524" ph="SELECT * FRO... expensereport" />
+            <marker date="1487426451123" expanded="true" signature="4688:4721" ph="SELECT * FRO... .$value." />
+            <marker date="1487426451123" expanded="true" signature="5170:5237" ph="SELECT * FRO... expensereport" />
+            <marker date="1487426451123" expanded="true" signature="8996:9030" ph="SELECT * FRO... .$scriptValues[0]." />
+            <marker date="1487426451123" expanded="true" signature="9168:9232" ph="SELECT * FRO... .$scriptValues[0]." />
+            <marker date="1487426451123" expanded="true" signature="9679:9750" ph="SELECT * FRO... expensereport" />
+            <marker date="1487426451123" expanded="true" signature="10128:10174" ph="SELECT * FRO... .$scriptValues[0]." />
+            <marker date="1487426451123" expanded="true" signature="10233:10277" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -288,10 +330,8 @@
     <entry file="file://$PROJECT_DIR$/generateApi.php" />
     <entry file="file://$PROJECT_DIR$/Components.php" />
     <entry file="file://$PROJECT_DIR$/CopDAO.php" />
-    <entry file="file://$PROJECT_DIR$/composer.json" />
     <entry file="file://$PROJECT_DIR$/componentsapi.php" />
     <entry file="file://$PROJECT_DIR$/compentsapi.php" />
-    <entry file="file://$PROJECT_DIR$/api.php" />
     <entry file="file://$PROJECT_DIR$/test01api.php" />
     <entry file="file://$PROJECT_DIR$/Test03DAO.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -341,20 +381,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1471">
+          <caret line="174" column="8" selection-start-line="174" selection-start-column="8" selection-end-line="174" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="81" column="17" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
+        <state relative-caret-position="2763">
+          <caret line="197" column="80" selection-start-line="197" selection-start-column="80" selection-end-line="197" selection-end-column="80" />
           <folding>
-            <marker date="1487355497576" expanded="true" signature="15:152" ph="CREATE TABLE... test01" />
-            <marker date="1487355497576" expanded="true" signature="154:317" ph="CREATE TABLE... test02" />
-            <marker date="1487355497576" expanded="true" signature="319:457" ph="CREATE TABLE... test03" />
-            <marker date="1487355497576" expanded="true" signature="604:634" ph="CREATE TABLE... ${$matches[1]}" />
-            <marker date="1487355497576" expanded="true" signature="5176:5210" ph="SELECT * FRO... .$scriptValues[0]." />
-            <marker date="1487355497576" expanded="true" signature="5348:5412" ph="SELECT * FRO... .$scriptValues[0]." />
-            <marker date="1487355497576" expanded="true" signature="5859:5930" ph="SELECT * FRO... expensereport" />
-            <marker date="1487355497576" expanded="true" signature="6308:6354" ph="SELECT * FRO... .$scriptValues[0]." />
-            <marker date="1487355497576" expanded="true" signature="6413:6457" ph="DELETE FROM " />
+            <marker date="1487426451123" expanded="true" signature="15:152" ph="CREATE TABLE... test01" />
+            <marker date="1487426451123" expanded="true" signature="154:317" ph="CREATE TABLE... test02" />
+            <marker date="1487426451123" expanded="true" signature="319:457" ph="CREATE TABLE... test03" />
+            <marker date="1487426451123" expanded="true" signature="604:634" ph="CREATE TABLE... ${$matches[1]}" />
+            <marker date="1487426451123" expanded="true" signature="4267:4291" ph="SELECT * FRO... .$value." />
+            <marker date="1487426451123" expanded="true" signature="4471:4524" ph="SELECT * FRO... expensereport" />
+            <marker date="1487426451123" expanded="true" signature="4688:4721" ph="SELECT * FRO... .$value." />
+            <marker date="1487426451123" expanded="true" signature="5170:5237" ph="SELECT * FRO... expensereport" />
+            <marker date="1487426451123" expanded="true" signature="8996:9030" ph="SELECT * FRO... .$scriptValues[0]." />
+            <marker date="1487426451123" expanded="true" signature="9168:9232" ph="SELECT * FRO... .$scriptValues[0]." />
+            <marker date="1487426451123" expanded="true" signature="9679:9750" ph="SELECT * FRO... expensereport" />
+            <marker date="1487426451123" expanded="true" signature="10128:10174" ph="SELECT * FRO... .$scriptValues[0]." />
+            <marker date="1487426451123" expanded="true" signature="10233:10277" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
